@@ -1,16 +1,17 @@
 pipeline {
-    agent {
+    agent any{
         label 'Calculator-jenkins-agent'
     }
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/JohnSapp-Dev/Final-Calculator-webapp', branch: 'MAIN' // Replace with your repo
+                git url: 'https://github.com/JohnSapp-Dev/Final-Calculator-webapp', branch: 'main' // Replace with your repo
             }
         }
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh 'chmod +x mvnw'
+                sh './mvn clean install'
             }
         }
         stage('Test') {
@@ -43,7 +44,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 //  Use kubectl to deploy (you'll need to configure your K8s deployment YAML)
-                sh 'kubectl apply -f kubernetes/deployment.yaml'
+                sh 'kubectl apply -f deployment.yaml'
                 //You might need to set the image.
                 sh "kubectl set image deployment/your-app-deployment your-app-container=${env.DOCKER_IMAGE_NAME} -n your-namespace"
             }
