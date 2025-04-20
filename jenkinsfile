@@ -1,6 +1,8 @@
 pipeline {
     agent any{
-        label 'Calculator-jenkins-agent'
+        DOCKER_IMAGE = 'final_pipeline_john_sapp'
+        DOCKER_REGISTRY = 'johnsappdev/final_pipeline_johnsapp'
+
     }
     stages {
         stage('Checkout') {
