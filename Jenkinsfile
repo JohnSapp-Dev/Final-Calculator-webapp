@@ -82,7 +82,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'mvn test'          //  Maven command to run tests
-                junit 'target/surefire-reports/*.xml'  //  Publish test results
+                junit 'target/test-classes/CalculatorTest.class'  //  Publish test results
             }
         }
         stage('Build Docker Image') {
