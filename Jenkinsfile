@@ -61,7 +61,7 @@ pipeline {
 pipeline {
     agent any
     tools {
-        maven 'Maven'  //  Ensure 'Maven' is configured in Jenkins Global Tool Configuration
+        maven 'Maven 3.9.9'  //  Ensure 'Maven' is configured in Jenkins Global Tool Configuration
     }
     stages {
         stage('Checkout') {
@@ -70,7 +70,7 @@ pipeline {
                     url: 'https://github.com/JohnSapp-Dev/Final-Calculator-webapp',
                     credentialsId: 'github',
                     branch: 'main',
-                    refspec: '+refs/heads/*:refs/remotes/origin/*'  // Corrected refspec
+
                 )
             }
         }
