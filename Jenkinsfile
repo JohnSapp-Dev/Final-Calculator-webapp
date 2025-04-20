@@ -1,9 +1,10 @@
 pipeline {
-    agent any{
+    agent any
+    envirorment{
         DOCKER_IMAGE = 'final_pipeline_john_sapp'
         DOCKER_REGISTRY = 'johnsappdev/final_pipeline_johnsapp'
-
     }
+    tools{maven 'Maven'}
     stages {
         stage('Checkout') {
             steps {
