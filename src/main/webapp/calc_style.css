@@ -1,0 +1,109 @@
+/* Dark Mode Styles */
+body {
+    background-color: #1a202c; /* Dark background */
+    color: #f7fafc; /* Light text */
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    transition: background-color 0.5s ease, color 0.5s ease; /* Smooth transition */
+}
+
+.container {
+    background-color: #2d3748; /* Slightly lighter container background */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    width: 400px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+h1 {
+    color: #f56565; /* Reddish title */
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+label {
+    margin-bottom: 8px;
+    color: #cbd5e0;
+    font-weight: bold;
+    width: 100%;
+    text-align: left;
+    display: block;
+}
+
+input[type="text"], select {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #4a5568; /* Darker border */
+    border-radius: 6px;
+    width: 100%;
+    max-width: 380px;
+    background-color: #edf2f7; /* Light input background */
+    color: #1a202c;  /* Dark input text */
+    transition: border-color 0.3s ease, background-color 0.3s ease; /* Added background-color transition */
+}
+
+input[type="text"]:focus, select:focus {
+    outline: none;
+    border-color: #f56565; /* Highlight on focus */
+    background-color: #fff;
+}
+
+
+select {
+    appearance: none; /* Remove default arrow */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none;    /* For Firefox */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23a0aec0' d='M7 10l5 5 5-5z'%3E%3C/path%3E%3C/svg%3E"); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 30px; /* Make space for the arrow */
+}
+
+select:focus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23f56565' d='M7 10l5 5 5-5z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+
+input[type="submit"] {
+    padding: 12px 25px;
+    background-color: #f56565; /* Red button */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 380px;
+}
+
+input[type="submit"]:hover {
+    background-color: #c53030; /* Darker red on hover */
+}
+
+#result {
+    margin-top: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #f56565; /* Red result text */
+}
+
+.error-message {
+    color: #ff0000;
+    margin-top: 10px;
+    font-size: 16px;
+}

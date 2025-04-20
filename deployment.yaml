@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: CalculatorAppDeploy
+  namespace: com.johnsapp.final_project
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: CalculatorApp
+  template:
+    metadata:
+      labels:
+        app: CalculatorApp
+    spec:
+      containers:
+        - name: CalculatorAppContainer
+          image: CalculatorImage:latest
+          ports:
+            - containerPort: 8080

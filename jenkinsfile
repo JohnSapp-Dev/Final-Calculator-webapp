@@ -1,0 +1,52 @@
+pipeline {
+    agent {
+        label 'Calculator-jenkins-agent'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/JohnSapp-Dev/Final-Calculator-webapp', branch: 'MAIN' // Replace with your repo
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+        stage('Test') {
+            steps {
+                //  Run TestNG (assuming you have a surefire-plugin configuration in Maven)
+                sh 'mvn test'
+                //  Publish JUnit test results
+                junit 'target/surefire-reports/*.xml'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                //  Build the Docker image
+                script {
+                    def image = docker.build("your-docker-image-name:${BUILD_NUMBER}", '.') // Tag with build number
+                    env.DOCKER_IMAGE_NAME = image.imageName
+                }
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                //  Push the Docker image
+                script {
+                    docker.withRegistry('https://your-docker-registry', 'your-docker-credentials-id') { // Replace
+                        docker.push("${env.DOCKER_IMAGE_NAME}")
+                    }
+                }
+            }
+        }
+        stage('Deploy to Kubernetes') {
+            steps {
+                //  Use kubectl to deploy (you'll need to configure your K8s deployment YAML)
+                sh 'kubectl apply -f kubernetes/deployment.yaml'
+                //You might need to set the image.
+                sh "kubectl set image deployment/your-app-deployment your-app-container=${env.DOCKER_IMAGE_NAME} -n your-namespace"
+            }
+        }
+    }
+}
