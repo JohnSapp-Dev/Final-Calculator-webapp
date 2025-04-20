@@ -1,3 +1,4 @@
+/*
 pipeline {
     agent any
     envirorment{
@@ -23,7 +24,8 @@ pipeline {
                 //  Run TestNG (assuming you have a surefire-plugin configuration in Maven)
                 sh 'mvn test'
                 //  Publish JUnit test results
-                junit 'target/surefire-reports/*.xml'
+                junit 'target/surefire-reports */
+/*.xml'
             }
         }
         stage('Build Docker Image') {
@@ -51,6 +53,64 @@ pipeline {
                 sh 'kubectl apply -f deployment.yaml'
                 //You might need to set the image.
                 sh "kubectl set image deployment/your-app-deployment your-app-container=${env.DOCKER_IMAGE_NAME} -n your-namespace"
+            }
+        }
+    }
+} */
+
+pipeline {
+    agent any
+    tools {
+        maven 'Maven'  //  Ensure 'Maven' is configured in Jenkins Global Tool Configuration
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git(
+                    url: 'https://github.com/JohnSapp-Dev/Final-Calculator-webapp',
+                    credentialsId: 'github',
+                    branch: 'main',
+                    refspec: '+refs/heads/*:refs/remotes/origin/*'  // Corrected refspec
+                )
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'  //  Maven command to clean and build
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'          //  Maven command to run tests
+                junit 'target/surefire-reports/*.xml'  //  Publish test results
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build the Docker image, tagging with a meaningful name
+                    def imageName = "johnsappdev/final-calculator-webapp:${BUILD_NUMBER}"
+                    docker.build(imageName, '.')
+                    env.DOCKER_IMAGE_NAME = imageName //store the full name
+                }
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    // Push the Docker image to your registry
+                    docker.withRegistry('https://your-docker-registry', 'your-docker-credentials-id') {
+                        docker.push("${env.DOCKER_IMAGE_NAME}")
+                    }
+                }
+            }
+        }
+        stage('Deploy to Kubernetes') {
+            steps {
+                //  Deploy to Kubernetes
+                sh "kubectl apply -f kubernetes/deployment.yaml" //example
+                sh "kubectl set image deployment/final-calculator-deployment final-calculator-container=${env.DOCKER_IMAGE_NAME} -n your-kubernetes-namespace"
+
             }
         }
     }
