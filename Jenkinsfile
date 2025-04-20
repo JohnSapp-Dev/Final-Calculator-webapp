@@ -84,7 +84,7 @@ pipeline {
                 sh 'mvn test'          //  Maven command to run tests
                 junit 'target/test-classes/CalculatorTest.class'  //  Publish test results
             }
-        }
+        }//
         stage('Build Docker Image') {
             steps {
                 script {
