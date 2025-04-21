@@ -99,12 +99,15 @@ pipeline {
                     }
                 }
             }
-
-
         stage('Deploy to Kubernetes') {
             steps {
                 script{
-                    echo 'kubernetes'
+                    sh 'kubectl apply -f deployment.yaml'
+                    echo "Waiting for deployment to roll out..."
+                    sh 'kubectl rollout status deployment/calculator-web-app-deployment --timeout=60s --watch'
+
+                    echo "Service details:"
+                    sh 'kubectl get service calculator-web-app-service -o wide'
                 }
 
             }

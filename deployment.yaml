@@ -1,20 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: CalculatorAppDeploy
-  namespace: com.johnsapp.final_project
+  name: calculator-web-app-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: CalculatorApp
+      app: calculator-web-app
   template:
     metadata:
       labels:
-        app: CalculatorApp
+        app: calculator-web-app
     spec:
       containers:
-        - name: CalculatorAppContainer
-          image: CalculatorImage:latest
+        - name: calculator-web-app-container
+          image: johnsappdev/calculator-web-app.war:latest
           ports:
             - containerPort: 8080
