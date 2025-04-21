@@ -113,5 +113,14 @@ pipeline {
 
             }
         }
+        stage('Run JMeter'){
+            steps{
+                script{
+                sh 'D:'
+                sh 'cd \programs\apache-jmeter-5.6.3\bin'
+                sh '.\jmeter -n -t .\Plans\Calculator_load_test.jmx -l .\logs\calculator_app.jtl -e -o .\calculator_results'
+                }
+            }
+        }
     }
 }
