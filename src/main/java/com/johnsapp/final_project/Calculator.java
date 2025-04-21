@@ -2,11 +2,14 @@ package com.johnsapp.final_project;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Calculator {
 
     static Scanner UserSelection = new Scanner(System.in);
     static boolean exit = false;
+    private static final Logger logger = LogManager.getLogger(Calculator.class);
 
     /**
      * This method prints a menu to the screen for the user to pick from
@@ -103,6 +106,7 @@ public class Calculator {
      * @param x float
      * @param y float*/
     public static float addNumbers(float x, float y){
+        logger.info("Running 'addNumbers' method");
         return x + y;
     }
 
@@ -111,6 +115,7 @@ public class Calculator {
      * @param x float
      * @param y float*/
     public static float subtractNumbers(float x, float y){
+        logger.info("Running 'subtractNumbers' method");
         return x - y;
     }
 
@@ -119,6 +124,7 @@ public class Calculator {
      * @param x float
      * @param y float*/
     public static float multiplyNumbers(float x, float y){
+        logger.info("Running 'multiplyNumbers' method");
         return x * y;
     }
 
@@ -127,6 +133,7 @@ public class Calculator {
      * @param x float
      * @param y float*/
     public static String divideNumbers(float x, float y){
+        logger.info("Running 'divideNumbers' method");
         float answer = x / y;
         DecimalFormat df = new DecimalFormat("#.0000");
         return df.format(answer);

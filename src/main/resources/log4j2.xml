@@ -1,0 +1,25 @@
+<configuration status="info">
+    <Properties>
+        <Property name="layout">%d [%t] %-5level %logger - %m%n</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${layout}" />
+        </Console>
+        <File name="LogFile" fileName="D:\School\2025\SW test - config\final\Final\logs\Cal_web_app.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <loggers>
+        <Logger name="Calculator" level="info" additivity="false">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="LogFile" />
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="LogFile" />
+        </Root>
+    </loggers>
+</configuration>
