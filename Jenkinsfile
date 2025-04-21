@@ -99,12 +99,10 @@ pipeline {
                 }
             }
         }
+
         stage('Deploy to Kubernetes') {
             steps {
-                //  Deploy to Kubernetes
-                sh "kubectl apply -f kubernetes/deployment.yaml" //example
-                sh "kubectl set image deployment/final-calculator-deployment final-calculator-container=${env.DOCKER_IMAGE_NAME} -n your-kubernetes-namespace"
-
+                echo 'kubernetes'
             }
         }
     }
