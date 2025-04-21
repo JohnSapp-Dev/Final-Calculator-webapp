@@ -95,7 +95,7 @@ pipeline {
 
                     sh 'docker login -u sappjohn1994@gmail.com -p zD6vMlrKIEpfum2e6*T44H7'
 
-                    sh 'docker push calculator-web-app'
+                    sh 'docker push johnsappdev/calculator-web-app'
                     }
                 }
             }
