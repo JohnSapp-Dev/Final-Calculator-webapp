@@ -81,18 +81,9 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-                    steps {
-                        script {
-                            //  Use a more robust way to define the image name
-//                             def imageName = "johnsappdev/final-calculator-webapp:${BUILD_NUMBER}"
-//                             // Wrap docker commands in a withRegistry block
-//                             docker.withRegistry('https://registry-1.docker.io', 'your-docker-credentials-id') {
-//                                 docker.build(imageName, '.')
-//                                 env.DOCKER_IMAGE_NAME = imageName
-                                sh 'docker build -t johnsappdev/CalculatorWebApp.war'
-
-
-                             }
+            steps {
+                script {
+                        sh 'docker build -t johnsappdev/CalculatorWebApp.war'
                         }
                     }
                 }
