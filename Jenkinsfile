@@ -107,7 +107,7 @@ pipeline {
                     sh 'kubectl rollout status deployment/calculator-web-app-deployment --timeout=60s --watch'
 
                     echo "Service details:"
-                    sh 'kubectl get service calculator-web-app-service -o wide'
+                    sh 'kubectl get service calculator-web-app-service'
                 }
 
             }
