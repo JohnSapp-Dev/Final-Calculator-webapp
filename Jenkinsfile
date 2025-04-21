@@ -61,7 +61,7 @@ pipeline {
 pipeline {
     agent any
     tools {
-        maven 'Maven 3.9.9'  //  Ensure 'Maven' is configured in Jenkins Global Tool Configuration
+        maven '3.9.9'  //  Ensure 'Maven' is configured in Jenkins Global Tool Configuration
     }
     stages {
         stage('Checkout') {
