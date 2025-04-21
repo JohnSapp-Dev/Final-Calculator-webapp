@@ -91,8 +91,10 @@ pipeline {
             steps {
                 script {
                     // Push the Docker image to your registry
-                    docker.withRegistry('https://your-docker-registry', 'your-docker-credentials-id') {
-                        docker.push("${env.DOCKER_IMAGE_NAME}")
+
+                    sh 'docker login -u sappjohn1994@gmail.com -p zD6vMlrKIEpfum2e6*T44H7'
+
+                    sh 'docker push calculator-web-app'
                     }
                 }
             }
