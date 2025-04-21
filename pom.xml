@@ -61,5 +61,6 @@
             </plugin>
 
         </plugins>
+        <finalName>CalculatorWebApp</finalName>
     </build>
 </project>
