@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim
+FROM tomcat:latest
 EXPOSE 8080
-COPY target/calculator-web-app.war /usr/local/tomcat/webapps/calculator-web-app.war
+COPY calculator-web-app.war /usr/local/tomcat/webapps/
 
