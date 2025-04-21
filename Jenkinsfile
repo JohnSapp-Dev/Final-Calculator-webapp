@@ -103,6 +103,7 @@ pipeline {
             steps {
                 script{
                     sh 'kubectl apply -f deployment.yaml'
+                    sh 'kubectl apply -f service.yaml'
                     echo "Waiting for deployment to roll out..."
                     sh 'kubectl rollout status deployment/calculator-web-app-deployment --timeout=120s --watch'
 
