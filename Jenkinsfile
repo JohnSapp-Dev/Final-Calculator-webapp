@@ -115,12 +115,11 @@ pipeline {
         }
         stage('Run JMeter'){
             steps{
-                script{
-                    sh 'D:'
-                    echo "D drive"
-                    sh 'cd \\programs\\apache-jmeter-5.6.3\\bin'
-                    echo "jmeter bin"
-                    sh '.\\jmeter -n -t .\\Plans\\Calculator_load_test.jmx -l .\\logs\\calculator_app.jtl -e -o .\\calculator_results'
+                dir('D:\\programs\\apache-jmeter-5.6.3\\bin'){
+                    script{
+                        echo "trying to run load test"
+                        sh 'jmeter.bat -n -t "D:\\programs\\apache-jmeter-5.6.3\\bin\\Plans\\Calculator_load_test.jmx" -l "D:\\programs\\apache-jmeter-5.6.3\\bin\\logs\\calculator_app.jtl" -e -o "D:\\programs\\apache-jmeter-5.6.3\\bin\\calculator_results"'
+                    }D:\programs\apache-jmeter-5.6.3\bin\Plans
                 }
             }
         }
